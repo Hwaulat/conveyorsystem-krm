@@ -132,7 +132,7 @@ function ConveyorDashboard() {
                   {group.items.map((item) => {
                     const Icon = item.icon;
                     const isActive = active === item.label;
-                    return <button key={item.label} title={collapsed ? item.label : undefined} onClick={() => { setActive(item.label); setSidebarOpen(false); }} className={`relative flex h-43 min-h-11 w-full items-center gap-3 rounded-md px-3 text-left text-[13px] transition-colors ${isActive ? "bg-sidebar-accent font-semibold text-primary-foreground before:absolute before:-left-2 before:h-7 before:w-1 before:rounded-r before:bg-primary" : "hover:bg-sidebar-accent/60 hover:text-primary-foreground"}`}>
+                    return <button key={item.label} title={collapsed ? item.label : undefined} onClick={() => { setActive(item.label); setSidebarOpen(false); }} className={`relative flex h-11 w-full items-center gap-3 rounded-md px-3 text-left text-[13px] transition-colors ${isActive ? "bg-sidebar-accent font-semibold text-primary-foreground before:absolute before:-left-2 before:h-7 before:w-1 before:rounded-r before:bg-primary" : "hover:bg-sidebar-accent/60 hover:text-primary-foreground"}`}>
                       <Icon className="h-[18px] w-[18px] shrink-0" />
                       {!collapsed && <><span className="min-w-0 flex-1 truncate">{item.label}</span>{item.badge && <span className="grid h-5 min-w-5 place-items-center rounded-full bg-primary px-1 text-[10px] text-primary-foreground">{item.badge}</span>}</>}
                     </button>;
