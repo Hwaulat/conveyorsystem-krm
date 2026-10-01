@@ -40,11 +40,11 @@ export function DashboardView({
         <StatCardGrid
           columns={5}
           items={[
-            { title: "Cabins on line", value: "53", subtitle: "+4 this hour", icon: <Boxes className="h-5 w-5 text-gray-500" />, valueColor: "text-info", variant: "compact" },
-            { title: "Processing", value: "21", subtitle: "39.6% of line", icon: <CircleGauge className="h-5 w-5 text-gray-500" />, valueColor: "text-success", variant: "compact" },
-            { title: "Waiting", value: "29", subtitle: "Avg. 8m 14s", icon: <Clock3 className="h-5 w-5 text-gray-500" />, valueColor: "text-warning", variant: "compact" },
-            { title: "Delayed", value: "3", subtitle: "Over target time", icon: <AlertTriangle className="h-5 w-5 text-gray-500" />, valueColor: "text-destructive", variant: "compact" },
-            { title: "Completed today", value: "118", subtitle: "92% of target", icon: <PackageCheck className="h-5 w-5 text-gray-500" />, valueColor: "text-info", variant: "compact" },
+            { title: "Cabins on line", value: "53", subtitle: "+4 this hour", icon: <Boxes className="h-5 w-5 text-info" />, iconBg: "bg-blue-50 dark:bg-blue-900/20", valueColor: "text-info", variant: "compact" },
+            { title: "Processing", value: "21", subtitle: "39.6% of line", icon: <CircleGauge className="h-5 w-5 text-success" />, iconBg: "bg-green-50 dark:bg-green-900/20", valueColor: "text-success", variant: "compact" },
+            { title: "Waiting", value: "29", subtitle: "Avg. 8m 14s", icon: <Clock3 className="h-5 w-5 text-warning" />, iconBg: "bg-yellow-50 dark:bg-yellow-900/20", valueColor: "text-warning", variant: "compact" },
+            { title: "Delayed", value: "3", subtitle: "Over target time", icon: <AlertTriangle className="h-5 w-5 text-destructive" />, iconBg: "bg-red-50 dark:bg-red-900/20", valueColor: "text-destructive", variant: "compact" },
+            { title: "Completed today", value: "118", subtitle: "92% of target", icon: <PackageCheck className="h-5 w-5 text-info" />, iconBg: "bg-blue-50 dark:bg-blue-900/20", valueColor: "text-info", variant: "compact" },
           ]}
         />
       </section>

@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { PanelTitle } from "./DashboardView";
 import { SelectInput } from "@/components/ui/select-input";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 type ReportPeriod = "today" | "week" | "month";
 
@@ -97,17 +98,35 @@ export function ReportsView() {
         <section className="overflow-hidden rounded-md border bg-card shadow-sm">
           <PanelTitle title="Throughput" subtitle={`Cabins completed per ${period === "today" ? "hour" : period === "week" ? "day" : "week"}`} action={`${data.reduce((s, d) => s + d.count, 0)} total`} />
           <div className="p-4">
-            <div className="flex items-end gap-1 h-48">
-              {data.map((d, i) => (
-                <div key={d.hour} className="flex flex-1 flex-col items-center gap-1">
-                  <span className="text-[9px] font-semibold tabular-nums text-muted-foreground">{d.count}</span>
-                  <div className="w-full rounded-t-sm bg-primary/15 relative" style={{ height: `${(d.count / maxCount) * 100}%`, minHeight: 4 }}>
-                    <div className="absolute inset-0 rounded-t-sm bg-primary transition-all hover:bg-primary/80" />
-                  </div>
-                  <span className="text-[9px] text-muted-foreground">{d.hour}</span>
-                </div>
-              ))}
-            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <BarChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" />
+                <XAxis
+                  dataKey="hour"
+                  tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
+                  axisLine={{ stroke: "var(--border)" }}
+                  tickLine={false}
+                  label={{ value: period === "today" ? "Hours" : "Days", position: "insideBottom", offset: -2, fontSize: 11, fill: "var(--muted-foreground)" }}
+                />
+                <YAxis
+                  tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
+                  axisLine={false}
+                  tickLine={false}
+                  label={{ value: "Total", angle: -90, position: "insideLeft", offset: 16, fontSize: 11, fill: "var(--muted-foreground)" }}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "var(--card)",
+                    borderColor: "var(--border)",
+                    borderRadius: 8,
+                    fontSize: 12,
+                    color: "var(--foreground)",
+                  }}
+                  cursor={{ fill: "var(--muted)", opacity: 0.4 }}
+                />
+                <Bar dataKey="count" fill="var(--primary)" radius={[4, 4, 0, 0]} maxBarSize={48} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </section>
 

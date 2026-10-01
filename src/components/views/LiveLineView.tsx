@@ -101,10 +101,10 @@ export function LiveLineView({ onSelectCabin, cabins }: { onSelectCabin: (c: Cab
         <StatCardGrid
           columns={4}
           items={[
-            { title: "Active stations", value: "17 / 20", icon: <Radio className="h-5 w-5 text-gray-500" />, valueColor: "text-success", variant: "compact" },
-            { title: "Throughput", value: "4.8 /hr", icon: <Zap className="h-5 w-5 text-gray-500" />, valueColor: "text-primary", variant: "compact" },
-            { title: "Avg. cycle", value: "14m 22s", icon: <Clock3 className="h-5 w-5 text-gray-500" />, valueColor: "text-info", variant: "compact" },
-            { title: "Delayed", value: "3", icon: <AlertTriangle className="h-5 w-5 text-gray-500" />, valueColor: "text-destructive", variant: "compact" },
+            { title: "Active stations", value: "17 / 20", icon: <Radio className="h-5 w-5 text-success" />, iconBg: "bg-green-50 dark:bg-green-900/20", valueColor: "text-success", variant: "compact" },
+            { title: "Throughput", value: "4.8 /hr", icon: <Zap className="h-5 w-5 text-primary" />, iconBg: "bg-blue-50 dark:bg-blue-900/20", valueColor: "text-primary", variant: "compact" },
+            { title: "Avg. cycle", value: "14m 22s", icon: <Clock3 className="h-5 w-5 text-info" />, iconBg: "bg-sky-50 dark:bg-sky-900/20", valueColor: "text-info", variant: "compact" },
+            { title: "Delayed", value: "3", icon: <AlertTriangle className="h-5 w-5 text-destructive" />, iconBg: "bg-red-50 dark:bg-red-900/20", valueColor: "text-destructive", variant: "compact" },
           ]}
         />
       </div>

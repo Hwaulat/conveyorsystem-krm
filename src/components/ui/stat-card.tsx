@@ -163,21 +163,23 @@ export function StatCard(item: StatCardItem) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
-      <div className="flex items-center justify-between mb-3">
-        {item.icon && (
-          <div
-            className={`w-10 h-10 rounded-lg flex items-center justify-center ${item.iconBg ?? 'bg-gray-100 dark:bg-gray-700'}`}
-          >
-            {item.icon}
-          </div>
-        )}
-        {item.badge && (
-          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${item.badgeColor ?? 'text-gray-500'} ${item.badgeBg ?? 'bg-gray-100'}`}>
-            {item.badge}
-          </span>
-        )}
-      </div>
+    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+      {(item.icon || item.badge) && (
+        <div className="flex items-center justify-between mb-3">
+          {item.icon && (
+            <div
+              className={`w-10 h-10 rounded-lg flex items-center justify-center ${item.iconBg ?? 'bg-gray-100 dark:bg-gray-700'}`}
+            >
+              {item.icon}
+            </div>
+          )}
+          {item.badge && (
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${item.badgeColor ?? 'text-gray-500'} ${item.badgeBg ?? 'bg-gray-100'}`}>
+              {item.badge}
+            </span>
+          )}
+        </div>
+      )}
       <p className="text-gray-500 dark:text-gray-400 text-sm">{item.title}</p>
       <p className={`text-2xl font-bold tabular-nums ${item.valueColor ?? 'text-gray-900 dark:text-white'}`}>
         {typeof item.value === 'number' ? item.value.toLocaleString() : item.value}
