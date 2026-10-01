@@ -14,6 +14,7 @@ import { PanelTitle } from "./DashboardView";
 import { SelectInput } from "@/components/ui/select-input";
 import { StatCardGrid } from "@/components/ui/stat-card";
 import { TableLayout } from "@/components/ui/table-layout";
+import { Search } from "@/components/ui/search-input";
 import { Fragment } from "react";
 
 type Exception = {
@@ -93,12 +94,17 @@ const typeLabels: Record<Exception["type"], string> = {
 export function ExceptionsView() {
   const [statusFilter, setStatusFilter] = useState<"all" | "open" | "resolved">("all");
   const [severityFilter, setSeverityFilter] = useState<"all" | "critical" | "warning" | "info">("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const filtered = exceptions.filter(e => {
     if (statusFilter === "open" && e.resolvedAt) return false;
     if (statusFilter === "resolved" && !e.resolvedAt) return false;
     if (severityFilter !== "all" && e.severity !== severityFilter) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      if (!e.cabin.toLowerCase().includes(q) && !e.description.toLowerCase().includes(q)) return false;
+    }
     return true;
   });
 
@@ -127,6 +133,9 @@ export function ExceptionsView() {
         hideDateRange
         toolbarFilters={
           <>
+            <div className="flex-1 min-w-[200px]">
+              <Search value={searchQuery} onChange={(e: any) => setSearchQuery(e.target.value)} placeholder="Search by cabin or description..." />
+            </div>
             <div className="w-[150px]">
               <SelectInput
                 datalist={[

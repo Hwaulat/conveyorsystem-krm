@@ -12,6 +12,7 @@ import {
   Radio,
   ScanLine,
   ShieldAlert,
+  Sun,
   Users,
   X,
   type LucideIcon,
@@ -85,6 +86,35 @@ function ConveyorDashboard() {
   const [selected, setSelected] = useState<Cabin | null>(null);
   const [now, setNow] = useState(new Date("2026-09-30T10:25:46Z"));
 
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+        return true;
+      } else if (savedTheme === "light") {
+        document.documentElement.classList.remove("dark");
+        return false;
+      }
+      return document.documentElement.classList.contains("dark");
+    }
+    return false;
+  });
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => {
+      const newTheme = !prev;
+      if (newTheme) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+      return newTheme;
+    });
+  };
+
   useEffect(() => {
     const id = window.setInterval(() => setNow((value) => new Date(value.getTime() + 1000)), 1000);
     return () => window.clearInterval(id);
@@ -140,7 +170,9 @@ function ConveyorDashboard() {
           <button aria-label="Collapse sidebar" onClick={() => setCollapsed((value) => !value)} className="hidden h-9 w-9 place-items-center rounded-md text-muted-foreground hover:bg-muted lg:grid"><ChevronsLeft className={`h-5 w-5 transition-transform ${collapsed ? "rotate-180" : ""}`} /></button>
           <div className="hidden min-w-0 md:block"><p className="truncate font-display text-sm font-semibold">Paint Line 01</p><p className="text-[10px] text-muted-foreground">Plant Operations · Shift 2</p></div>
           <div className="col-start-3 flex items-center gap-2 sm:gap-4">
-            <Moon className="hidden h-4 w-4 text-muted-foreground sm:block" />
+            <button onClick={toggleTheme} aria-label="Toggle Theme" className="hidden sm:grid h-10 w-10 place-items-center rounded-md hover:bg-muted">
+              {isDarkMode ? <Sun className="h-[18px] w-[18px] text-muted-foreground" /> : <Moon className="h-[18px] w-[18px] text-muted-foreground" />}
+            </button>
             <div className="hidden text-right sm:block"><p className="text-xs font-bold tabular-nums">{time}</p><p className="text-[10px] text-muted-foreground">Wednesday, September 30, 2026</p></div>
             <div className="h-8 w-px bg-border" />
             <button aria-label="Notifications" className="relative grid h-10 w-10 place-items-center rounded-md hover:bg-muted"><Bell className="h-[18px] w-[18px] text-muted-foreground" /><span className="absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-destructive px-1 text-[8px] font-bold text-destructive-foreground">3</span></button>

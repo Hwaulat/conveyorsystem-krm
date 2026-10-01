@@ -130,9 +130,6 @@ export function UsersManagementView() {
                         <th className="px-4 py-3">Role</th>
                         <th className="px-4 py-3">Department</th>
                         <th className="px-4 py-3">Position</th>
-                        <th className="px-4 py-3">Phone</th>
-                        <th className="px-4 py-3">City</th>
-                        <th className="px-4 py-3">Country</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y bg-card text-xs">
@@ -156,14 +153,11 @@ export function UsersManagementView() {
                           <td className="px-4 py-3">{u.role}</td>
                           <td className="px-4 py-3">{u.department}</td>
                           <td className="px-4 py-3">{u.position}</td>
-                          <td className="px-4 py-3 tabular-nums">{u.phone}</td>
-                          <td className="px-4 py-3">{u.city}</td>
-                          <td className="px-4 py-3">{u.country}</td>
                         </tr>
                       ))}
                       {filteredUsers.length === 0 && (
                         <tr>
-                          <td colSpan={9} className="p-8 text-center text-xs text-muted-foreground">
+                          <td colSpan={6} className="p-8 text-center text-xs text-muted-foreground">
                             No users found
                           </td>
                         </tr>

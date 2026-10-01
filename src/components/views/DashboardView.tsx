@@ -40,11 +40,11 @@ export function DashboardView({
         <StatCardGrid
           columns={5}
           items={[
-            { title: "Cabins on line", value: "53", subtitle: "+4 this hour", icon: <Boxes className="h-5 w-5" />, valueColor: "text-info" },
-            { title: "Processing", value: "21", subtitle: "39.6% of line", icon: <CircleGauge className="h-5 w-5" />, valueColor: "text-success" },
-            { title: "Waiting", value: "29", subtitle: "Avg. 8m 14s", icon: <Clock3 className="h-5 w-5" />, valueColor: "text-warning" },
-            { title: "Delayed", value: "3", subtitle: "Over target time", icon: <AlertTriangle className="h-5 w-5" />, valueColor: "text-destructive" },
-            { title: "Completed today", value: "118", subtitle: "92% of target", icon: <PackageCheck className="h-5 w-5" />, valueColor: "text-info" },
+            { title: "Cabins on line", value: "53", subtitle: "+4 this hour", icon: <Boxes className="h-5 w-5 text-gray-500" />, valueColor: "text-info", variant: "compact" },
+            { title: "Processing", value: "21", subtitle: "39.6% of line", icon: <CircleGauge className="h-5 w-5 text-gray-500" />, valueColor: "text-success", variant: "compact" },
+            { title: "Waiting", value: "29", subtitle: "Avg. 8m 14s", icon: <Clock3 className="h-5 w-5 text-gray-500" />, valueColor: "text-warning", variant: "compact" },
+            { title: "Delayed", value: "3", subtitle: "Over target time", icon: <AlertTriangle className="h-5 w-5 text-gray-500" />, valueColor: "text-destructive", variant: "compact" },
+            { title: "Completed today", value: "118", subtitle: "92% of target", icon: <PackageCheck className="h-5 w-5 text-gray-500" />, valueColor: "text-info", variant: "compact" },
           ]}
         />
       </section>

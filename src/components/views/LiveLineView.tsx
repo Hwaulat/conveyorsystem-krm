@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { Cabin } from "./shared-types";
 import { PanelTitle, StatusBadge } from "./DashboardView";
+import { StatCardGrid } from "@/components/ui/stat-card";
 
 type StationData = {
   code: string;
@@ -96,11 +97,16 @@ export function LiveLineView({ onSelectCabin, cabins }: { onSelectCabin: (c: Cab
   return (
     <>
       {/* top summary strip */}
-      <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <MiniStat icon={Radio} label="Active stations" value="17 / 20" accent="text-success" />
-        <MiniStat icon={Zap} label="Throughput" value="4.8 /hr" accent="text-primary" />
-        <MiniStat icon={Clock3} label="Avg. cycle" value="14m 22s" accent="text-info" />
-        <MiniStat icon={AlertTriangle} label="Delayed" value="3" accent="text-destructive" />
+      <div className="mb-5">
+        <StatCardGrid
+          columns={4}
+          items={[
+            { title: "Active stations", value: "17 / 20", icon: <Radio className="h-5 w-5 text-gray-500" />, valueColor: "text-success", variant: "compact" },
+            { title: "Throughput", value: "4.8 /hr", icon: <Zap className="h-5 w-5 text-gray-500" />, valueColor: "text-primary", variant: "compact" },
+            { title: "Avg. cycle", value: "14m 22s", icon: <Clock3 className="h-5 w-5 text-gray-500" />, valueColor: "text-info", variant: "compact" },
+            { title: "Delayed", value: "3", icon: <AlertTriangle className="h-5 w-5 text-gray-500" />, valueColor: "text-destructive", variant: "compact" },
+          ]}
+        />
       </div>
 
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
@@ -247,17 +253,5 @@ export function LiveLineView({ onSelectCabin, cabins }: { onSelectCabin: (c: Cab
         </div>
       </div>
     </>
-  );
-}
-
-function MiniStat({ icon: Icon, label, value, accent }: { icon: typeof Radio; label: string; value: string; accent: string }) {
-  return (
-    <div className="flex items-center gap-3 rounded-md border bg-card p-3 shadow-sm">
-      <Icon className={`h-5 w-5 shrink-0 ${accent}`} />
-      <div className="min-w-0">
-        <p className="text-[10px] text-muted-foreground">{label}</p>
-        <p className={`font-display text-sm font-bold ${accent}`}>{value}</p>
-      </div>
-    </div>
   );
 }
